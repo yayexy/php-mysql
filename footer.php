@@ -1,3 +1,3 @@
 <footer id="pied_de_page">
-    <p>Copyright moi, tous droits réservés</p>
+    <p>© 2021 Copyright: <u>Alexandre Brabant</u></p>
 </footer>

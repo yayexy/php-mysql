@@ -24,7 +24,11 @@
         ?>
 
         <?php 
-        if (!isset($_GET['user_email']) || !isset($_GET['user_message']) || empty($_GET['user_email']) || empty($_GET['user_message'])) {
+        if (
+            (!isset($_GET['user_email']) || !filter_var($_GET['user_email'], FILTER_VALIDATE_EMAIL))
+            || (!isset($_GET['user_message']) || empty($_GET['user_message']))
+        ) 
+        {
             echo "<h1>Il faut un email et un message pour soumettre le formulaire.</h1>";
             return;
         } 

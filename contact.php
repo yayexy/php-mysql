@@ -17,7 +17,7 @@
     <?php include_once('header.php'); ?>
     
     <div class="container">
-        <form action="./submit_contact.php" method="post">
+        <form action="./submit_contact.php" method="post" enctype="multipart/form-data">
             <h1>Contactez nous</h1>
             <label for="user_email">Email&nbsp;:</label>
             <input type="email" id="email" name="user_email" class="form-control" />
@@ -26,6 +26,10 @@
             <label for="user_message">Votre message&nbsp;:</label>
             <textarea id="message" name="user_message" class="form-control" placeholder="Exprimez vous"></textarea>
 
+            <div class="mb-3">
+                <label for="screenshot" class="form_label">Votre capture d'écran</label>
+                <input type="file" class="form-control" id="screenshot" name="screenshot"/>
+            </div>
             <button type="submit" class="btn">Envoyer</button>
         </form>
     </div>

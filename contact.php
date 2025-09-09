@@ -17,14 +17,14 @@
     <?php include_once('header.php'); ?>
     
     <div class="container">
-        <form action="/ma-page-de-traitement" method="post">
+        <form action="./submit_contact.php" method="GET">
             <h1>Contactez nous</h1>
-            <label for="email">Email&nbsp;:</label>
+            <label for="user_email">Email&nbsp;:</label>
             <input type="email" id="email" name="user_email" class="form-control" />
             <small>Nous ne revendrons pas votre email.</small>
 
-            <label for="msg">Votre message&nbsp;:</label>
-            <textarea id="msg" name="user_message" class="form-control" placeholder="Exprimez vous"></textarea>
+            <label for="user_message">Votre message&nbsp;:</label>
+            <textarea id="message" name="user_message" class="form-control" placeholder="Exprimez vous"></textarea>
 
             <button type="submit" class="btn">Envoyer</button>
         </form>

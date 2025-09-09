@@ -25,8 +25,8 @@
 
         <?php 
         if (
-            (!isset($_GET['user_email']) || !filter_var($_GET['user_email'], FILTER_VALIDATE_EMAIL))
-            || (!isset($_GET['user_message']) || empty($_GET['user_message']))
+            (!isset($_POST['user_email']) || !filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL))
+            || (!isset($_POST['user_message']) || empty($_POST['user_message']))
         ) 
         {
             echo "<h1>Il faut un email et un message pour soumettre le formulaire.</h1>";
@@ -38,8 +38,8 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Rappel de vos informations</h5>
-                    <p class="card-text"><b>Email</b> : <?php echo htmlspecialchars($_GET['user_email']); ?> </p>
-                    <p class="card-text"><b>Message</b> : <?php echo htmlspecialchars($_GET['user_message']); ?> </p>
+                    <p class="card-text"><b>Email</b> : <?php echo htmlspecialchars($_POST['user_email']); ?> </p>
+                    <p class="card-text"><b>Message</b> : <?php echo htmlspecialchars($_POST['user_message']); ?> </p>
                 </div>
             </div>
             <?php

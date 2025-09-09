@@ -32,20 +32,31 @@
             echo "<h1>Il faut un email et un message pour soumettre le formulaire.</h1>";
             return;
         } 
-        else {
-        ?>
-            <h1>Message bien reçu !</h1>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Rappel de vos informations</h5>
-                    <p class="card-text"><b>Email</b> : <?php echo htmlspecialchars($_POST['user_email']); ?> </p>
-                    <p class="card-text"><b>Message</b> : <?php echo htmlspecialchars($_POST['user_message']); ?> </p>
-                </div>
-            </div>
-            <?php
+        
+        if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0) {
+            if ($_FILES['screenshot']['size'] <= 1000000) {
+                $fileInfo = pathinfo($_FILES['screenshot']['name']);
+                $extension = strtolower($fileInfo['extension']);
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+                if (in_array($extension, $allowedExtensions)) {
+                    move_uploaded_file($_FILES['screenshot']['tmp_name'], 'uploads/' . basename($_FILES['screenshot']['name']));
+                    echo "<p>Fichier envoyé avec succès !</p>";
+                } else {
+                    echo "<p>Extension non autorisée. Seuls jpg, jpeg, png, gif sont acceptés.</p>";
+                }
+            } else {
+                echo "<p>Fichier trop volumineux. Maximum 1 Mo.</p>";
+            }
         }
         ?>
-
+        <h1>Message bien reçu !</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Rappel de vos informations</h5>
+                <p class="card-text"><b>Email</b> : <?php echo htmlspecialchars($_POST['user_email']); ?> </p>
+                <p class="card-text"><b>Message</b> : <?php echo htmlspecialchars($_POST['user_message']); ?> </p>
+            </div>
+        </div>
     </div>
 
     <!-- inclusion du bas de page du site -->

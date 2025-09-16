@@ -5,6 +5,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     foreach ($users as $user) {
         if ( $_POST['email'] === $user['email'] && $_POST['password'] === $user['password'] ) {
             $_SESSION['LOGGED_USER'] = $user['email'];
+
+            header('Location: index.php');
+            exit;
         }
         else {
             $errorMessage = sprintf('Les informations envoyées ne permettent pas de

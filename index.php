@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <?php include_once('header.php'); ?>
+    <!-- inclusion de l'entête du site -->
+    <?php include_once('header.php'); ?>    
     
     <div class="container vh-100">
-        <h1>Site de recettes</h1>
 
         <!-- inclusion des variables et fonctions -->
         <?php
@@ -23,16 +23,19 @@
             include_once('functions.php');
         ?>
 
-        <!-- inclusion de l'entête du site -->
-        <?php include_once('header.php'); ?>
+        <?php include_once('login.php'); ?>
 
-        <?php foreach(getRecipes($recipes) as $recipe) : ?>
-            <article>
-                <h3><?php echo $recipe['title']; ?></h3>
-                <div><?php echo $recipe['recipe']; ?></div>
-                <i><?php echo displayAuthor($recipe['author'], $users); ?></i>
-            </article>
-        <?php endforeach ?>
+        <?php if(isset($loggedUser)): ?>
+            <h1>Site de recettes</h1>
+
+            <?php foreach(getRecipes($recipes) as $recipe) : ?>
+                <article>
+                    <h3><?php echo $recipe['title']; ?></h3>
+                    <div><?php echo $recipe['recipe']; ?></div>
+                    <i><?php echo displayAuthor($recipe['author'], $users); ?></i>
+                </article>
+            <?php endforeach ?>
+        <?php endif; ?>
     </div>
 
     <!-- inclusion du bas de page du site -->

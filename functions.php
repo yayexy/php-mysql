@@ -27,4 +27,16 @@
         }
         return 'Auteur inconnu';
     }
+
+    function getUserRecipes(array $recipes, string $userEmail) {
+        $userRecipes = [];
+        foreach($recipes as $recipe) {
+            if (isValidRecipe($recipe) && $recipe['author'] === $userEmail) {
+                $userRecipes[] = $recipe;
+            }
+        }
+        
+        return $userRecipes;
+    }
+
 ?>

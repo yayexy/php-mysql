@@ -25,16 +25,41 @@
 
         <?php include_once('login.php'); ?>
 
-        <?php if(isset($loggedUser)): ?>
-            <h1>Site de recettes</h1>
+        <?php if(isset($_COOKIE['LOGGED_USER'])): ?>
+            <!-- inclusion de l'entête du site -->
+            <?php include_once('header.php'); ?> 
 
-            <?php foreach(getRecipes($recipes) as $recipe) : ?>
-                <article>
-                    <h3><?php echo $recipe['title']; ?></h3>
-                    <div><?php echo $recipe['recipe']; ?></div>
-                    <i><?php echo displayAuthor($recipe['author'], $users); ?></i>
-                </article>
-            <?php endforeach ?>
+            <h1>Vos recettes :</h1>
+            <?php 
+            // Afficher seulement les recettes de l'utilisateur connecté
+            $userRecipes = getUserRecipes($recipes, $_COOKIE['LOGGED_USER']);
+            ?>
+
+            <?php if (!empty($userRecipes)): ?>
+                <?php foreach($userRecipes as $recipe) : ?>
+                    <div class="col-lg-4 col-md-6">
+                        <article class="card recipe-card h-100 mt-3 rounded-50">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold"><?php echo $recipe['title']; ?></h5>
+                                <p class="card-text text-muted flex-grow-1"><?php echo $recipe['recipe']; ?></p>
+
+                                <div class="d-flex justify-content-between align-items-center mt-auto">
+                                    <small class="text-muted">
+                                        <i class="bi bi-person-circle me-1"></i>
+                                        <?php echo displayAuthor($recipe['author'], $users); ?>
+                                    </small>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                <?php endforeach ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <div class="alert alert-warning">
+                        Vous n'avez pas encore publié de recettes.
+                    </div>
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
 

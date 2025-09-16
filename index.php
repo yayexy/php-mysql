@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +27,7 @@
 
         <?php include_once('login.php'); ?>
 
-        <?php if(isset($loggedUser)): ?>
+        <?php if(isset($_SESSION['LOGGED_USER'])): ?>
             <h1>Site de recettes</h1>
 
             <?php foreach(getRecipes($recipes) as $recipe) : ?>

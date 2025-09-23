@@ -60,6 +60,8 @@
                                         <?php echo displayAuthor($recipe['author'], $users); ?>
                                     </small>
                                 </div>
+
+                                <a href="update.php?id=<?= $recipe['recipe_id'] ?>" class="btn btn-primary btn-sm">Modifier</a>
                             </div>
                         </article>
                     </div>

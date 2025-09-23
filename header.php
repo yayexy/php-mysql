@@ -14,6 +14,9 @@
         </li>
         <?php if(isset($_COOKIE['LOGGED_USER'])): ?>
           <li class="nav-item">
+            <a class="nav-link" href="create.php">Ajouter une recette</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="logout.php">Se déconnecter</a>
           </li>
         <?php endif; ?>

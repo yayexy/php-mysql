@@ -31,9 +31,13 @@
             <!-- Si tout va bien, on peut continuer -->
             <?php
             // On récupère tout le contenu de la table recipes
-            $sqlQuery = 'SELECT * FROM recipes WHERE is_enabled = true';
+            $sqlQuery = 'SELECT * FROM recipes WHERE author = :author AND is_enabled = :is_enabled';
             $recipesStatement = $db->prepare($sqlQuery);
-            $recipesStatement->execute();
+            $recipesStatement->execute([
+                'author' => $_COOKIE['LOGGED_USER'],
+                'is_enabled' => true,
+            ])
+            or die(print_r($db->errorInfo()));
             $userRecipes = $recipesStatement->fetchAll();
             ?>
 

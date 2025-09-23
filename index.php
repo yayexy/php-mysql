@@ -62,6 +62,7 @@
                                 </div>
 
                                 <a href="update.php?id=<?= $recipe['recipe_id'] ?>" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="delete.php?id=<?= $recipe['recipe_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Voulez-vous vraiment supprimer cette recette ?');">Supprimer</a>
                             </div>
                         </article>
                     </div>

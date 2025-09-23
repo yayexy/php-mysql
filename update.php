@@ -52,9 +52,7 @@ if (!$recipe) {
             <small id="title-help" class="form-text">Choisissez un titre percutant !</small>
 
             <label for="recipe">Description de la recette&nbsp;:</label>
-            <textarea id="recipe" name="recipe" class="form-control" placeholder="Seulement du contenu vous appartenant ou libre de droits.">
-                <?= htmlspecialchars($recipe['recipe']); ?>
-            </textarea>
+            <textarea id="recipe" name="recipe" class="form-control" placeholder="..."><?= trim(htmlspecialchars($recipe['recipe'])); ?></textarea>
 
             <button type="submit" class="btn">Envoyer</button>
         </form>

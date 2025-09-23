@@ -16,7 +16,6 @@
     <?php include_once('header.php'); ?>    
     
     <div class="container vh-100">
-
         <!-- inclusion des variables et fonctions -->
         <?php
             include_once('variables.php');
@@ -26,14 +25,22 @@
         <?php include_once('login.php'); ?>
 
         <?php if(isset($_COOKIE['LOGGED_USER'])): ?>
+            <!-- On se connecte à MySQL -->
+            <?php include_once('mysql.php'); ?>
+
+            <!-- Si tout va bien, on peut continuer -->
+            <?php
+            // On récupère tout le contenu de la table recipes
+            $sqlQuery = 'SELECT * FROM recipes WHERE is_enabled = true';
+            $recipesStatement = $db->prepare($sqlQuery);
+            $recipesStatement->execute();
+            $userRecipes = $recipesStatement->fetchAll();
+            ?>
+
             <!-- inclusion de l'entête du site -->
             <?php include_once('header.php'); ?> 
 
             <h1>Vos recettes :</h1>
-            <?php 
-            // Afficher seulement les recettes de l'utilisateur connecté
-            $userRecipes = getUserRecipes($recipes, $_COOKIE['LOGGED_USER']);
-            ?>
 
             <?php if (!empty($userRecipes)): ?>
                 <?php foreach($userRecipes as $recipe) : ?>
